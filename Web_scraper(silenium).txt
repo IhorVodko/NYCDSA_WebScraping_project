@@ -1,5 +1,4 @@
 from selenium import webdriver
-
 import csv
 
 driver = webdriver.Chrome(r'C:\Users\ihorf\chromedriver.exe')
@@ -10,7 +9,6 @@ https://www.cnn.com/search?size=10&q=opioid%7Cpurdue%7Cbankruptcy&page=1
 https://www.cnn.com/search?size=10&q=opioid%7Cpurdue%7Cbankruptcy&from=10&page=20
 https://www.cnn.com/search?size=10&q=opioid%7Cpurdue%7Cbankruptcy&from=20&page=30
 https://www.cnn.com/search?size=10&q=opioid%7Cpurdue%7Cbankruptcy&from=30&page=40
-
 https://edition.cnn.com/search?size=10&q=opioid%7Cpurdue%7Cbankruptcy&from=4100&page=4110
 '''
 
@@ -25,7 +23,6 @@ for i in range(0,410):
     urls.append(f'https://www.cnn.com/search?size=10&q=opioid%7Cpurdue%7Cbankruptcy&from={x}&page={y}')
 
 i = 1
-
 for url in urls:
     try:
         print('PAGE ' + str(i) + '+'*30 )
