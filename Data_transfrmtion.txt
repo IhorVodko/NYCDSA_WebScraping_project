@@ -11,7 +11,6 @@ news = pd.read_csv('news.csv')
 news.head()
 news.describe()
 
-
 #filter rows between 2011 and 2019 inclusive
 news[['Year']] = news[['Year']].loc[news['Year'].apply(lambda x: (x >= 2011) & (x <= 2019))]
 news.shape
@@ -34,10 +33,8 @@ def check_any(pattern1, pattern2, string):
         return 1
     else: 
         return 0
-
 df['Article_bank_purdue'] = df['Article'].apply(lambda x: check_any('purdue', 'bankruptcy', x))
-print(df['Article_bank_purdue'].sum())
-
+df['Article_bank_purdue'].sum()
 for i in ['Header', 'Article']:
     for y in ['opioid', 'purdue', 'bankruptcy']:
         news[i + '_' + y] = news[i].apply(lambda x: check_any(y, x))
@@ -54,11 +51,11 @@ df.shape
 # number of articles with certain words for each year
 df_grouped = df.groupby(df.index.year).agg({'Article_opioid': ['sum'],'Article_purdue': ['sum'],'Article_bank_purdue': ['sum']})
 df_grouped
+
 # correaltion matrix for the number of articles with certain words for each year
 df_c= df.groupby(df.index.year).agg({'Article_opioid': ['sum'],'Article_purdue': ['sum'],'Article_bankruptcy': ['sum']})
 df_corr = df_corr.corr(method = "pearson")
 df_corr
-
 
 # line chart for the number of articles with certain words for each year
 sns.set(rc={'figure.figsize':(11, 4)})
@@ -79,7 +76,6 @@ stop.extend(['one', 'told cnn', 'trump', 'president', 'say', 'said', 'may', 'new
             'make', 'made', 'including', 'work', 'need', 'know', 'year', 'still', 'want', 'take', 'going',\
              'state', 'monday', 'first', 'week', 'pr', 'michael', 'jackson', 'donald'])
 stop
-
 mask = np.array(Image.open("usa_map.jpg"))
 wc = WordCloud(background_color="black", max_words=2000, width=800, height=400, mask = mask)
 for_cloud = str(df.loc[df.Article_opioid == 1]['Article'].\
